@@ -1,0 +1,39 @@
+{
+  "name": "JS_Project",
+  "version": "1.0.0",
+  "description": "JS Project: Action Combat Boss Simulator",
+  "main": "index.js",
+  "scripts": {
+    "watch": "webpack --watch --mode=development",
+    "build": "webpack --mode=production"
+  },
+  "browserslist": [
+    "defaults"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hermanh36/JS_Project.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hermanh36/JS_Project/issues"
+  },
+  "homepage": "https://github.com/hermanh36/JS_Project#readme",
+  "dependencies": {
+    "@babel/core": "^7.17.8",
+    "@babel/preset-env": "^7.16.11",
+    "babel-loader": "^8.2.4",
+    "core-js": "^3.21.1",
+    "css-loader": "^6.7.1",
+    "first-person-controls": "^1.0.1",
+    "mini-css-extract-plugin": "^2.6.0",
+    "regenerator-runtime": "^0.13.9",
+    "sass": "^1.49.10",
+    "sass-loader": "^12.6.0",
+    "three": "^0.139.2",
+    "webpack": "^5.71.0",
+    "webpack-cli": "^4.9.2"
+  }
+}
