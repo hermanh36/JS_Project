@@ -8,6 +8,9 @@ const config = {
     path.resolve(__dirname, 'src', 'index.js'),
     path.resolve(__dirname, 'src', 'index.scss'),
   ],
+  watchOptions: {
+        poll: true
+    },
   output: {
     path: path.join(__dirname, 'dist'), // bundled file in dist/
     filename: '[name].js',
@@ -29,6 +32,19 @@ const config = {
           },
           'sass-loader', // compiles sass to css
         ]
+      },
+      {
+        test: /\.(gif|png|jpe?g|svg)$/i,
+        use: [
+          'file-loader',
+          {
+            loader: 'image-webpack-loader',
+            options: {
+              bypassOnDebug: true, // webpack@1.x
+              disable: true, // webpack@2.x and newer
+            },
+          },
+        ],
       }
     ],
   },
