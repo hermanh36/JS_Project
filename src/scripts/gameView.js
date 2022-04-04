@@ -79,8 +79,6 @@ export class GameView {
     async addModels(object){
         // object.loadToScene(this.scene);
         let loadCompleted = function() {
-            console.log(this.models);
-            console.log("model loaded");
             this.models.push(object);
         }
         loadCompleted = loadCompleted.bind(this);
