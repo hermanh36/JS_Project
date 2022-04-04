@@ -16,7 +16,7 @@ let clock = new THREE.Clock();
 let delta;
 export class GameView {
     constructor(){
-        this.models = []
+        this.models = [];
         this.canvasSetUp();
         this.textureSetup();
         this.stageSetup();
@@ -29,15 +29,15 @@ export class GameView {
         this.renderer = new THREE.WebGLRenderer();
         this.renderer.setSize(window.innerWidth, window.innerHeight);
         document.body.appendChild(this.renderer.domElement);
-        this.camera = new THREE.PerspectiveCamera(100, window.innerWidth / window.innerHeight, 1, 2000);
-        window.addEventListener('resize',function(){
+        this.camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 2000);
+        window.addEventListener('resize',() => {
             let height = window.innerHeight;
             let width = window.innerWidth;
             this.camera.aspect = width/height;
             this.camera.updateProjectionMatrix();
             this.renderer.setSize(width,height);
           });
-        this.camera.position.set = (70,30,30);
+        this.camera.position.set = (70,30,0);
         const dirLight = new THREE.DirectionalLight(0xFFFFFF, 1);
         dirLight.position.set(50, 50, 50);
         //edit later when target is made
@@ -65,22 +65,28 @@ export class GameView {
     }
     
     //update, render, loop
-    update(player) {
+    update() {
         //game logic goes here
-        for (let i = 0; i< this.models.length; i++){
-            if (this.models[i] instanceof Player){
-                this.models[i].loadToScene(this.scene);
+        delta = clock.getDelta();
+        if(this.models.length > 0){
+            for(let i = 0; i<this.models.length;i++){
+                this.models[i].update(delta);
             }
         }
-        delta = clock.getDelta();
     }
 
 
-    addModels(object){
-        this.models.push(object);
-        this.scene.add(object.model);
-        object.model.position.set(1,1,2);
+    async addModels(object){
+        // object.loadToScene(this.scene);
+        let loadCompleted = function() {
+            console.log(this.models);
+            console.log("model loaded");
+            this.models.push(object);
+        }
+        loadCompleted = loadCompleted.bind(this);
+        object.loadAnimated(this.scene, loadCompleted); // async function
     }
+
     render() {
         //re-render everything
         this.renderer.render(this.scene, this.camera);
@@ -90,8 +96,10 @@ export class GameView {
     gameLoop() {
         //update render repeat
         this.update();
-        this.render();
-        requestAnimationFrame(this.gameLoop.bind(this));
+        requestAnimationFrame(() =>{
+            this.render();
+            this.gameLoop();
+        });
     }
 
 };

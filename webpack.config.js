@@ -23,10 +23,9 @@ const config = {
         exclude: /node_modules/, // don't transpile node modules
       },
       {
-        test: /\.(png|jpe?g|gif|glb|gltf)$/i,
+        test: /\.(glb|gltf|fbx)$/i,
         loader: 'file-loader',
         options: {
-          publicPath: './',
           name: '[name].[ext]'
         }
       },
