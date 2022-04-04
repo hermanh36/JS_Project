@@ -6,7 +6,8 @@ import {Player} from "./scripts/player.js";
 
 
 document.addEventListener("DOMContentLoaded", () => {
-    testPlayer = new Player();
-    const gameView = new GameView(testPlayer);
+    let testPlayer = new Player();
+    const gameView = new GameView();
+    gameView.addModels(testPlayer);
     console.log("hit")
 });

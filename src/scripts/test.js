@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { FirstPersonControls } from './first-person-controls';
+import { FirstPersonControls } from './pointer-lock-controls';
 
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let delta;
   function render() {
     renderer.render(scene, camera);
-    controls.update(delta);
+    controls.update();
   }
 
   function GameLoop() {

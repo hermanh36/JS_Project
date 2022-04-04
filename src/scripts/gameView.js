@@ -1,5 +1,8 @@
 import * as THREE from 'three';
-import { FirstPersonControls } from './first-person-controls';
+import { FirstPersonControls } from './pointer-lock-controls';
+import {Player} from './player';
+// import { OrbitControls } from './examples/jsm/controls/OrbitControls.js';
+import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader';
 
 const back= require('./skybox_img/back.jpg');
 const front = require('./skybox_img/front.jpg');
@@ -12,10 +15,12 @@ let clock = new THREE.Clock();
 let delta;
 export class GameView {
     constructor(){
+        this.models = []
         this.canvasSetUp();
         this.textureSetup();
         this.stageSetup();
         this.controls = new FirstPersonControls(this.camera, this.renderer.domElement);
+        // this.controls.addEventListener('change', this.render);
         this.gameLoop();
     }
 
@@ -23,8 +28,7 @@ export class GameView {
         this.renderer = new THREE.WebGLRenderer();
         this.renderer.setSize(window.innerWidth, window.innerHeight);
         document.body.appendChild(this.renderer.domElement);
-        this.scene = new THREE.Scene();
-        this.camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 2000);
+        this.camera = new THREE.PerspectiveCamera(100, window.innerWidth / window.innerHeight, 1, 2000);
         window.addEventListener('resize',function(){
             let height = window.innerHeight;
             let width = window.innerWidth;
@@ -32,11 +36,12 @@ export class GameView {
             this.camera.updateProjectionMatrix();
             this.renderer.setSize(width,height);
           });
-        this.camera.position.z = 10;
+        this.camera.position.set = (70,30,30);
         const dirLight = new THREE.DirectionalLight(0xFFFFFF, 1);
         dirLight.position.set(50, 50, 50);
         //edit later when target is made
         // dirLight.target.position.set(targetVector);
+        this.scene = new THREE.Scene();
         this.scene.add(dirLight);
         const amb_light = new THREE.AmbientLight(0xFFFFFF, 1);
         this.scene.add(amb_light);
@@ -51,21 +56,30 @@ export class GameView {
 
     //creating a stage
     stageSetup() {
-        // const geometry = new THREE.PlaneGeometry(20,20)
-        // const meshMats = new THREE.MeshBasicMaterial({color: 'white', side: THREE.DoubleSide});
-        // const stage =  new THREE.Mesh(geometry, meshMats);
-        // this.scene.add(stage);
+        const geometry = new THREE.PlaneGeometry(25,25)
+        const meshMats = new THREE.MeshBasicMaterial({color: 'white', side: THREE.DoubleSide});
+        const stage =  new THREE.Mesh(geometry, meshMats);
+        stage.rotation.x = -Math.PI/2;
+        this.scene.add(stage);
     }
     
     //update, render, loop
     update(player) {
         //game logic goes here
-        player.update();
+        for (let i = 0; i< this.models.length; i++){
+            if (this.models[i] instanceof Player){
+                this.models[i].loadToScene(this.scene);
+            }
+        }
         delta = clock.getDelta();
     }
 
 
-
+    addModels(object){
+        this.models.push(object);
+        this.scene.add(object.model);
+        object.model.position.set(1,1,2);
+    }
     render() {
         //re-render everything
         this.renderer.render(this.scene, this.camera);
@@ -77,11 +91,6 @@ export class GameView {
         this.update();
         this.render();
         requestAnimationFrame(this.gameLoop.bind(this));
-        // controls.update();
-    }
-
-    addModel(model){
-        this.scene.add(model);
     }
 
 };
