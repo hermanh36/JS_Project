@@ -1,15 +1,9 @@
 import * as THREE from 'three';
 import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 
-const idle= require('./model/idle.fbx');
-const tpose= require('./model/tpose.fbx');
-const dash = require('./model/dash.fbx');
-const death = require('./model/death.fbx');
-const jump_slash = require('./model/jump_slash.fbx');
-const outward_slash = require('./model/outward_slash.fbx');
-const thrust_slash = require('./model/thrust_slash.fbx');
-const walk= require('./model/walk.fbx');
 
+const tpose= require('./model/wolf.gltf');
 
 export class Player{
     
@@ -30,9 +24,9 @@ export class Player{
     }
 
     loadToScene(scene){
-        let loader = new FBXLoader();
+        let loader = new GLTFLoader();
         this.model = loader.load(tpose.default,(model)=>{
-            scene.add(model);
+            scene.add(model.scene);
         });
     }
 

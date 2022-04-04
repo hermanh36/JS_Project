@@ -23,6 +23,14 @@ const config = {
         exclude: /node_modules/, // don't transpile node modules
       },
       {
+        test: /\.(png|jpe?g|gif|glb|gltf)$/i,
+        loader: 'file-loader',
+        options: {
+          publicPath: './',
+          name: '[name].[ext]'
+        }
+      },
+      {
         test: /\.s?[ac]ss$/, // applies to css/scss/sass files
         use: [
           MiniCssExtractPlugin.loader, // create bundled css file
@@ -34,7 +42,16 @@ const config = {
         ]
       },
       {
-        test: /\.(gif|png|jpe?g|svg|fbx)$/i,
+        test: /\.(bin)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {}
+          }
+        ]
+      },
+      {
+        test: /\.(gif|png|jpe?g|svg)$/i,
         use: [
           'file-loader',
           {

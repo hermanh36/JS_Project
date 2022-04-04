@@ -3,6 +3,7 @@ import { FirstPersonControls } from './pointer-lock-controls';
 import {Player} from './player';
 // import { OrbitControls } from './examples/jsm/controls/OrbitControls.js';
 import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 
 const back= require('./skybox_img/back.jpg');
 const front = require('./skybox_img/front.jpg');
@@ -56,11 +57,11 @@ export class GameView {
 
     //creating a stage
     stageSetup() {
-        const geometry = new THREE.PlaneGeometry(25,25)
-        const meshMats = new THREE.MeshBasicMaterial({color: 'white', side: THREE.DoubleSide});
-        const stage =  new THREE.Mesh(geometry, meshMats);
-        stage.rotation.x = -Math.PI/2;
-        this.scene.add(stage);
+        // const geometry = new THREE.PlaneGeometry(25,25)
+        // const meshMats = new THREE.MeshBasicMaterial({color: 'white', side: THREE.DoubleSide});
+        // const stage =  new THREE.Mesh(geometry, meshMats);
+        // stage.rotation.x = -Math.PI/2;
+        // this.scene.add(stage);
     }
     
     //update, render, loop
