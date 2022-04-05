@@ -1,25 +1,27 @@
-class PlayerController {
+export class PlayerController {
 
   constructor(){
     this.forward = false;
     this.backward = false;
     this.left = false;
     this.right = false;
-    this.dodge = true;
-    this.hotkey1 = false;
-    this.hotkey2 = false;
-    this.hotkey3 = false;
-    this.hotkey4 = false;
-    this.hotkey5 = false;
+    this.shift = false;
+    this.hotkey1_out_slash = false;
+    this.hotkey2_up_slash = false;
+    this.hotkey3_spin_atk = false;
+    this.hotkeySpace_dodge = false;
 
-    document.addEventListener('keydown',keyDown);
-    document.addEventListener('keyup', (e) => this.keyUp);
+
+    document.addEventListener('keydown', this.keyDown);
+    document.addEventListener('keyup', this.keyUp);
 
   }
 
   keyDown(event) {
     if (event.code === 'KeyW'){
+      console.log("w");
       this.forward = true;
+      console.log("forward is "+this.forward);
     } else if (event.code === 'KeyS'){
       this.backward = true;
     } else if (event.code === 'KeyA'){
@@ -27,15 +29,15 @@ class PlayerController {
     } else if (event.code === 'KeyD'){
       this.right = true;
     } else if (event.code === 'ShiftLeft'){
-      this.dodge = true;
+      this.shift = true;
     } else if (event.code === 'Digit1'){
-      this.hotkey1 = true;
+      this.hotkey1_out_slash = true;
     } else if (event.code === 'Digit2'){
-      this.hotkey2 = true;
+      this.hotkey2_up_slash = true;
     } else if (event.code === 'Digit3'){
-      this.hotkey3 = true;
-    } else if (event.code === 'Digit4'){
-      this.hotkey4 = true;
+      this.hotkey3_spin_atk = true;
+    } else if (event.code === 'Space'){
+      this.hotkeySpace_dodge = true;
     } else if (event.code === 'Digit5') {
       this.hotkey5 = true;
     }
@@ -51,18 +53,17 @@ class PlayerController {
     } else if (event.code === 'KeyD') {
       this.right = false;
     } else if (event.code === 'ShiftLeft') {
-      this.dodge = false;
+      this.run = false;
     } else if (event.code === 'Digit1') {
-      this.hotkey1 = false;
+      this.hotkey1_out_slash = false;
     } else if (event.code === 'Digit2') {
-      this.hotkey2 = false;
+      this.hotkey2_up_slash = false;
     } else if (event.code === 'Digit3') {
-      this.hotkey3 = false;
-    } else if (event.code === 'Digit4') {
-      this.hotkey4 = false;
+      this.hotkey3_spin_atk = false;
+    } else if (event.code === 'Space') {
+      this.hotkeySpace_dodge = false;
     } else if (event.code === 'Digit5') {
       this.hotkey5 = false;
     }
   }
-
 }

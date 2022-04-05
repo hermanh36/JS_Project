@@ -9,5 +9,4 @@ document.addEventListener("DOMContentLoaded", () => {
     let testPlayer = new Player();
     const gameView = new GameView();
     gameView.addModels(testPlayer);
-    console.log("hit")
 });

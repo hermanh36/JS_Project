@@ -1,9 +1,19 @@
 import * as THREE from 'three';
 import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+import {PlayerController} from './player_controller.js';
+import {FiniteStateMachine, States} from './states/finite_state_machine.js';
+import {IdleState} from './states/idle_state.js';
+import { WalkState } from './states/walk_state.js';
+// import { RunState } from './states/run_state.js';
+// import { UpwardSlashState } from './states/upward_slash_state.js';
+// import { OutwardSlashState } from './states/outward_slash_state.js';
+// import { DodgeState } from './states/dodge_state.js';
+// import { SpinAttackState } from './states/spin_attack_state.js';
 
 
-// const tpose= require('./model/tpose.fbx');
+
+
 
 export class Player{
     
@@ -14,10 +24,8 @@ export class Player{
         this.vel = [];
         this.skills = [];
         this.input = new PlayerController();
-        this.stateMachine = new FiniteStateMachine();
-        this.mixer = new THREE.AnimationMixer();
-
-        this.loadModel();
+        this.stateMachine = new PlayerProxy()
+        this.animations = {};
     }
 
     is_hit(){
@@ -28,49 +36,36 @@ export class Player{
 
     }
 
-
-
-    // loadToScene(scene){
-    //     let loader = new GLTFLoader();
-    //     let loader2 = new FBXLoader();
-    //     this.model = loader2.load('./src/scripts/model/thrust_slash.fbx',(model)=>{
-    //         model.scale.setScalar(0.1);
-    //         scene.add(model);
-    //     })
-    //     // this.model = loader.load('./src/scripts/model/phoenix_bird/scene.gltf',(model)=>{
-    //     //     model.scene.scale.set(.01 * model.scene.scale.x, .01 * model.scene.scale.y, .01 * model.scene.scale.z);
-    //     //     scene.add(model.scene);
-    //     // });
-    // }
-
     loadAnimated(scene, loadCompletion) {
-        loader = new FBXLoader();
+        const loader = new FBXLoader();
         //callback is async, loadAnimated exits before the callback finishes executing, 
         loader.load('./src/scripts/model/tpose.fbx', (model) => {  //get the model
             model.scale.multiplyScalar(0.1);
             scene.add(model);
-            this.loadManager = new THREE.LoadingManager();
-            initload = () => {
-                this.stateMachine.setState = ('idle');
-            };
-            this.loadManager.onLoad = initload();
-            //onLoad will take in an animation name and call the animModel function to store into dictionary
-            onLoad = (animationName, animModel ) => {
+             //onLoad will take in an animation name and call the animModel function to store into dictionary
+            this.mixer = new THREE.AnimationMixer(model);
+            const onLoad = (animationName, animModel) => {
                 const animClip = animModel.animations[0];
-                const action = this.mixer.clipAction(clip);
-                this.animations[animationName] = 
+                const action = this.mixer.clipAction(animClip);
+                this.animations[animationName] =
                 {
                     clip: animClip,
                     action: action
                 }
             };
+            
+            this.mixer = new THREE.AnimationMixer(model);
+            this.loadManager = new THREE.LoadingManager();
+            
+            this.loadManager.onLoad = () => {
+                this.stateMachine.setState('idle');
+
+            }
+           
             //fill up dictionary
-            const innerLoader = new FBXLoader();
-            innerLoader.load('./src/scripts/model/dash.fbx',(animModel) => {
-                onLoad('dash', animModel);
-            });
-            innerLoader.load('./src/scripts/model/death.fbx', (animModel) => {
-                onLoad('death', animModel);
+            const innerLoader = new FBXLoader(this.loadManager);
+            innerLoader.load('./src/scripts/model/dodge.fbx',(animModel) => {
+                onLoad('dodge', animModel);
             });
             innerLoader.load('./src/scripts/model/idle.fbx', (animModel) => {
                 onLoad('idle', animModel);
@@ -78,26 +73,22 @@ export class Player{
             innerLoader.load('./src/scripts/model/run.fbx', (animModel) => {
                 onLoad('run', animModel);
             });
-            innerLoader.load('./src/scripts/model/outward_slash.fbx', (animModel) => {
-                onLoad('outward-slash', animModel);
+            innerLoader.load('./src/scripts/model/outward-slash.fbx', (animModel) => {
+                onLoad('outwardSlash', animModel);
             });
-            innerLoader.load('./src/scripts/model/jump_slash.fbx', (animModel) => {
-                onLoad('jump-slash', animModel);
+            innerLoader.load('./src/scripts/model/upward-slash.fbx', (animModel) => {
+                onLoad('upwardSlash', animModel);
             });
-            innerLoader.load('./src/scripts/model/thrust_slash.fbx', (animModel) => {
-                onLoad('thrust-slash', animModel);
+            innerLoader.load('./src/scripts/model/spin-attack.fbx', (animModel) => {
+                onLoad('spinAttack', animModel);
             });
-            innerLoader.load('./src/scripts/model/ANIMATION4.fbx', (animModel) => {
-                onLoad('ANIMATION4', animModel);
-            });
-            innerLoader.load('./src/scripts/model/ANIMATION5.fbx', (animModel) => {
-                onLoad('ANIMATION5', animModel);
-            });
+            loadCompletion();
         });
     }
 
     update(delta){
-        this.animationMixer.update(delta);
+        this.mixer.update(delta);
+        this.stateMachine.update(this.input,delta);
     }
 
     

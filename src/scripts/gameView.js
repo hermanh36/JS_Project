@@ -37,7 +37,7 @@ export class GameView {
             this.camera.updateProjectionMatrix();
             this.renderer.setSize(width,height);
           });
-        this.camera.position.set = (70,30,0);
+        this.camera.position.set = (-200,50,50);
         const dirLight = new THREE.DirectionalLight(0xFFFFFF, 1);
         dirLight.position.set(50, 50, 50);
         //edit later when target is made
@@ -76,7 +76,7 @@ export class GameView {
     }
 
 
-    async addModels(object){
+    addModels(object){
         // object.loadToScene(this.scene);
         let loadCompleted = function() {
             this.models.push(object);
