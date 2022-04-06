@@ -5,7 +5,7 @@ import { WalkState} from './walk_state.js';
 // import { UpwardSlashState } from './states/upward_slash_state.js';
 // import { OutwardSlashState } from './states/outward_slash_state.js';
 // import { DodgeState } from './states/dodge_state.js';
-// import { SpinAttackState } from './states/spin_attack_state.js';
+import { SpinAttackState } from './spin_attack_state.js';
 export class PlayerProxy extends FiniteStateMachine{
   constructor(player){
     super(); 
@@ -17,7 +17,7 @@ export class PlayerProxy extends FiniteStateMachine{
     // this.addState('upwardSlash', UpwardSlashState);
     // this.addState('outwardSlash', OutwardSlashState);
     // this.addState('dodge', DodgeState);
-    // this.addState('spinAttack', SpinAttackState);
+    this.addState('spinAttack', new SpinAttackState(this.player, this));
   }
 }
 

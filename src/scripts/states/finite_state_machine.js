@@ -39,6 +39,8 @@ export class FiniteStateMachine {
     }
     const next = this.states[stateName];
     this.currentState = next;
+    // debugger;
+    console.log(next);
     next.enter(prevState);  // prevstate here is used to transition states
   }
 

@@ -27,20 +27,20 @@ export class IdleState {
   update(input){
     console.log("idling");
     if((input.forward || input.backward || input.right || input.left) && input.shift){
-      this.setState('run');
+      this.parent.setState('run');
     } else if (input.forward || input.backward || input.right || input.left){
       console.log("walk");
       this.parent.setState('walk');
     } else if (input.hotkey1_out_slash){
-      this.setState('outwardSlash');
+      this.parent.setState('outwardSlash');
     } else if (input.hotkey2_up_slash){
-      this.setState('upwardSlash');
+      this.parent.setState('upwardSlash');
     } else if (input.hotkey3_spin_atk){
-      this.setState('spinAttack');
+      this.parent.setState('spinAttack');
     } else if (input.hotkeySpace_dodge){
-      input.forward = true;
+      input.parent.forward = true;
       this.setState('dodge');
-      input.forward = false;
+      input.parent.forward = false;
     }
     return; 
   }

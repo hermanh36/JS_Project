@@ -34,14 +34,14 @@ export class WalkState {
     if ((input.forward || input.backward || input.right || input.left) && input.shift) {
       this.parent.setState('run');
     } else if (input.hotkey1_out_slash) {
-      this.setState('outwardSlash');
+      this.parent.setState('outwardSlash');
     } else if (input.hotkey2_up_slash) {
-      this.setState('upwardSlash');
+      this.parent.setState('upwardSlash');
     } else if (input.hotkey3_spin_atk) {
-      this.setState('spinAttack');
+      this.parent.setState('spinAttack');
     } else if (input.hotkeySpace_dodge) {
       input.forward = true;
-      this.setState('dodge');
+      this.parent.setState('dodge');
       input.forward = false;
     } else if(!(input.forward || input.backward || input.right || input.left)) {
       this.parent.setState('idle');

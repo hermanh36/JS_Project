@@ -37,7 +37,7 @@ export class Player{
         const loader = new FBXLoader();
         //callback is async, loadAnimated exits before the callback finishes executing, 
         loader.load('./src/scripts/model/tpose.fbx', (model) => {  //get the model
-            model.scale.multiplyScalar(0.1);
+            model.scale.multiplyScalar(0.05);
             scene.add(model);
              //onLoad will take in an animation name and call the animModel function to store into dictionary
             this.mixer = new THREE.AnimationMixer(model);
