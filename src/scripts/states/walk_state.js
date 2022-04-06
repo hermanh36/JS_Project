@@ -1,28 +1,28 @@
 import {States} from './finite_state_machine.js';
 
-export class WalkState extends States {
-  constructor(player,parentState) {
-    super();
+export class WalkState {
+  constructor(player,parent) {
     this.player = player; 
-    this.currentState = parentState.currentState;
-  }
-
-  name(){
-    return 'walk';
+    this.parent = parent;
+    this.name = 'walk';
   }
 
   enter(prevState){
     let currentAnim = this.player.animations['walk'].action;
     if(prevState){
-      prevAnim = this.player.animations[prevState.name].action;
+      let prevAnim = this.player.animations[prevState.name].action;
+      currentAnim.enabled = true;
       //maybe check for run
       //
       //
       //
-      currentAnim.crossFadeFrom(prevAction, 0.3, true);
-      action.play();
+      currentAnim.time = 0.0;
+      // currentAnim.setEffectiveTimeScale(1.0);
+      // currentAnim.setEffectiveWeight(1.0);
+      currentAnim.crossFadeFrom(prevAnim, 0.3, true);
+      currentAnim.play();
     } else {
-      action.play();
+      currentAnim.play();
     }
   }
 
@@ -30,8 +30,9 @@ export class WalkState extends States {
   }
 
   update(input, delta){
+    console.log("walking")
     if ((input.forward || input.backward || input.right || input.left) && input.shift) {
-      this.setState('run');
+      this.parent.setState('run');
     } else if (input.hotkey1_out_slash) {
       this.setState('outwardSlash');
     } else if (input.hotkey2_up_slash) {
@@ -42,6 +43,8 @@ export class WalkState extends States {
       input.forward = true;
       this.setState('dodge');
       input.forward = false;
+    } else if(!(input.forward || input.backward || input.right || input.left)) {
+      this.parent.setState('idle');
     }
   }
 }

@@ -12,16 +12,14 @@ export class PlayerController {
     this.hotkeySpace_dodge = false;
 
 
-    document.addEventListener('keydown', this.keyDown);
-    document.addEventListener('keyup', this.keyUp);
+    document.addEventListener('keydown', (e)=>this.keyDown(e));
+    document.addEventListener('keyup', (e)=>this.keyUp(e));
 
   }
 
   keyDown(event) {
     if (event.code === 'KeyW'){
-      console.log("w");
       this.forward = true;
-      console.log("forward is "+this.forward);
     } else if (event.code === 'KeyS'){
       this.backward = true;
     } else if (event.code === 'KeyA'){

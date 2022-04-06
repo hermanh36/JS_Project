@@ -1,21 +1,17 @@
-import {States} from './finite_state_machine.js'
+import {State} from './state.js'
 
-export class IdleState extends States {
-  constructor(player,parentState) {
-    super();
+export class IdleState {
+  constructor(player, parent) {
     this.player = player;
-    this.parentState = parentState
-  }
-
-  name(){
-    return 'idle';
+    this.parent = parent;
+    this.name = 'idle';
   }
 
   enter(prevState){
     const action = this.player.animations['idle'].action;
     if (prevState){ //cross fade if prevState exists, otherwise just play
-      const prevAction = this.animation[prevState.name].action;
-      action.time = 0;
+      const prevAction = this.player.animations[prevState.name].action;
+      action.enabled = true;
       action.crossFadeFrom(prevAction,0.3, true);
       action.play();
     } else {
@@ -29,13 +25,12 @@ export class IdleState extends States {
   }
 
   update(input){
-    console.log("input is "+input.forward);
-    this.currentState = this.parentState.currentState;
+    console.log("idling");
     if((input.forward || input.backward || input.right || input.left) && input.shift){
       this.setState('run');
     } else if (input.forward || input.backward || input.right || input.left){
       console.log("walk");
-      this.setState('walk');
+      this.parent.setState('walk');
     } else if (input.hotkey1_out_slash){
       this.setState('outwardSlash');
     } else if (input.hotkey2_up_slash){

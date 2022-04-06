@@ -2,10 +2,7 @@ import * as THREE from 'three';
 import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import {PlayerController} from './player_controller.js';
-import {FiniteStateMachine, States} from './states/finite_state_machine.js';
-import {IdleState} from './states/idle_state.js';
-import { WalkState } from './states/walk_state.js';
-// import { RunState } from './states/run_state.js';
+import {PlayerProxy} from './states/proxy.js'
 // import { UpwardSlashState } from './states/upward_slash_state.js';
 // import { OutwardSlashState } from './states/outward_slash_state.js';
 // import { DodgeState } from './states/dodge_state.js';
@@ -24,7 +21,7 @@ export class Player{
         this.vel = [];
         this.skills = [];
         this.input = new PlayerController();
-        this.stateMachine = new PlayerProxy()
+        this.stateMachine = new PlayerProxy(this)
         this.animations = {};
     }
 
@@ -69,6 +66,9 @@ export class Player{
             });
             innerLoader.load('./src/scripts/model/idle.fbx', (animModel) => {
                 onLoad('idle', animModel);
+            });
+            innerLoader.load('./src/scripts/model/walk.fbx', (animModel) => {
+                onLoad('walk', animModel);
             });
             innerLoader.load('./src/scripts/model/run.fbx', (animModel) => {
                 onLoad('run', animModel);

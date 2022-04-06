@@ -1,3 +1,5 @@
+// import {IdleState} from './idle_state'
+
 
 export class FiniteStateMachine {
   constructor() {
@@ -29,7 +31,7 @@ export class FiniteStateMachine {
   setState(stateName){
     let prevState = this.currentState;
     if (prevState){
-      if(this.getState(prevState.name) === stateName){ //if prev state is the same as current state, do nothing
+      if(prevState.name === stateName){ //if prev state is the same as current state, do nothing
         return;
       } else {
         prevState.exit();
@@ -37,12 +39,12 @@ export class FiniteStateMachine {
     }
     const next = this.states[stateName];
     this.currentState = next;
-    console.log(this.states)
     next.enter(prevState);  // prevstate here is used to transition states
   }
 
   update(input, delta){
     if(this.currentState){
+      // debugger;
       this.currentState.update(input, delta);
     }
   }
