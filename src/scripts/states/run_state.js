@@ -49,9 +49,7 @@ export class RunState {
     } else if (input.hotkey3_spin_atk) {
       this.parent.setState('spinAttack');
     } else if (input.hotkeySpace_dodge) {
-      input.forward = true;
-      this.parent.setState('dodge');
-      input.forward = false;
+      this.parent.setState('dance');
     }
   }
 }

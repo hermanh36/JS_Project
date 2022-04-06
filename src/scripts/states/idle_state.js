@@ -42,7 +42,7 @@ export class IdleState {
     } else if (input.hotkey3_ulti){
       this.parent.setState('ulti');
     } else if (input.hotkeySpace_dodge){
-      this.setState('dance');
+      this.parent.setState('dance');
     }
     return; 
   }
