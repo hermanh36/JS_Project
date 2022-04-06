@@ -27,9 +27,10 @@ export class GameView {
 
     canvasSetUp() {
         this.renderer = new THREE.WebGLRenderer();
-        this.renderer.setSize(window.innerWidth, window.innerHeight);
-        document.body.appendChild(this.renderer.domElement);
-        this.camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 2000);
+        this.renderer.setSize(1080, 720);
+        
+        document.getElementsByClassName('main-canvas')[0].appendChild(this.renderer.domElement);
+        this.camera = new THREE.PerspectiveCamera(75, 1080 / 720, 1, 2000);
         window.addEventListener('resize',() => {
             let height = window.innerHeight;
             let width = window.innerWidth;
