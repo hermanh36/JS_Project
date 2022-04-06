@@ -6,9 +6,9 @@ export class PlayerController {
     this.left = false;
     this.right = false;
     this.shift = false;
-    this.hotkey1_out_slash = false;
-    this.hotkey2_up_slash = false;
-    this.hotkey3_spin_atk = false;
+    this.hotkey3_slash = false;
+    this.hotkey2_spin = false;
+    this.hotkey3_ulti = false;
     this.hotkeySpace_dodge = false;
 
 
@@ -29,11 +29,11 @@ export class PlayerController {
     } else if (event.code === 'ShiftLeft'){
       this.shift = true;
     } else if (event.code === 'Digit1'){
-      this.hotkey1_out_slash = true;
+      this.hotkey3_slash = true;
     } else if (event.code === 'Digit2'){
-      this.hotkey2_up_slash = true;
+      this.hotkey2_spin = true;
     } else if (event.code === 'Digit3'){
-      this.hotkey3_spin_atk = true;
+      this.hotkey3_ulti = true;
     } else if (event.code === 'Space'){
       this.hotkeySpace_dodge = true;
     } else if (event.code === 'Digit5') {
@@ -53,11 +53,11 @@ export class PlayerController {
     } else if (event.code === 'ShiftLeft') {
       this.shift = false;
     } else if (event.code === 'Digit1') {
-      this.hotkey1_out_slash = false;
+      this.hotkey3_slash = false;
     } else if (event.code === 'Digit2') {
-      this.hotkey2_up_slash = false;
+      this.hotkey2_spin = false;
     } else if (event.code === 'Digit3') {
-      this.hotkey3_spin_atk = false;
+      this.hotkey3_ulti = false;
     } else if (event.code === 'Space') {
       this.hotkeySpace_dodge = false;
     } else if (event.code === 'Digit5') {

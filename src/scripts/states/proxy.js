@@ -17,7 +17,7 @@ export class PlayerProxy extends FiniteStateMachine{
     // this.addState('upwardSlash', UpwardSlashState);
     // this.addState('outwardSlash', OutwardSlashState);
     // this.addState('dodge', DodgeState);
-    this.addState('spinAttack', new SpinAttackState(this.player, this));
+    this.addState('spin', new SpinAttackState(this.player, this));
   }
 }
 

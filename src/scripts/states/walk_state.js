@@ -30,19 +30,20 @@ export class WalkState {
   }
 
   update(input, delta){
-    console.log("walking")
-    if ((input.forward || input.backward || input.right || input.left) && input.shift) {
+    if (input.forward && input.shift) {
       this.parent.setState('run');
-    } else if (input.hotkey1_out_slash) {
-      this.parent.setState('outwardSlash');
-    } else if (input.hotkey2_up_slash) {
-      this.parent.setState('upwardSlash');
-    } else if (input.hotkey3_spin_atk) {
-      this.parent.setState('spinAttack');
+    } else if(input.backward){
+      this.parent.setState('back')
+    } else if(input.right || input.left){
+      this.parent.setState('strafe');
+    } else if (input.hotkey1_slash) {
+      this.parent.setState('hotkey1_slash');
+    } else if (input.hotkey2_slash) {
+      this.parent.setState('hotkey2_spin');
+    } else if (input.hotkey3_spin) {
+      this.parent.setState('hotkey3_ulti');
     } else if (input.hotkeySpace_dodge) {
-      input.forward = true;
-      this.parent.setState('dodge');
-      input.forward = false;
+      this.parent.setState('dance');
     } else if(!(input.forward || input.backward || input.right || input.left)) {
       this.parent.setState('idle');
     }

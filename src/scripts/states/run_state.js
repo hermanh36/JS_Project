@@ -30,12 +30,18 @@ export class RunState {
   }
 
   update(input, delta){
-    if ((input.forward || input.backward || input.right || input.left)){
+    if (input.forward ){
       if (!input.shift) {
         this.parent.setState('walk');
       }
+    } else if (!input.shift){
+      this.parent.setState('idle');
+    } else if(input.backward){
+      this.parent.setState('back')
+    } else if(input.right || input.left){
+      this.parent.setState('strafe');
     } else if (input.hotkey1_out_slash) {
-      this.parent.setState('outwardSlash');
+      this.parent.setState('slash');
     } else if (input.hotkey2_up_slash) {
       this.parent.setState('upwardSlash');
     } else if (input.hotkey3_spin_atk) {

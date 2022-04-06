@@ -62,8 +62,8 @@ export class Player{
            
             //fill up dictionary
             const innerLoader = new FBXLoader(this.loadManager);
-            innerLoader.load('./src/scripts/model/dodge.fbx',(animModel) => {
-                onLoad('dodge', animModel);
+            innerLoader.load('./src/scripts/model/dance.fbx',(animModel) => {
+                onLoad('dance', animModel);
             });
             innerLoader.load('./src/scripts/model/idle.fbx', (animModel) => {
                 onLoad('idle', animModel);
@@ -74,14 +74,20 @@ export class Player{
             innerLoader.load('./src/scripts/model/run.fbx', (animModel) => {
                 onLoad('run', animModel);
             });
-            innerLoader.load('./src/scripts/model/outward-slash.fbx', (animModel) => {
-                onLoad('outwardSlash', animModel);
+            innerLoader.load('./src/scripts/model/slash.fbx', (animModel) => {
+                onLoad('slash', animModel);
             });
-            innerLoader.load('./src/scripts/model/upward-slash.fbx', (animModel) => {
-                onLoad('upwardSlash', animModel);
+            innerLoader.load('./src/scripts/model/spin.fbx', (animModel) => {
+                onLoad('spin', animModel);
             });
-            innerLoader.load('./src/scripts/model/spin-attack.fbx', (animModel) => {
-                onLoad('spinAttack', animModel);
+            innerLoader.load('./src/scripts/model/ulti.fbx', (animModel) => {
+                onLoad('ulti', animModel);
+            });
+            innerLoader.load('./src/scripts/model/strafe.fbx', (animModel) => {
+                onLoad('strafe', animModel);
+            });
+            innerLoader.load('./src/scripts/model/back.fbx', (animModel) => {
+                onLoad('back', animModel);
             });
             loadCompletion();
         });

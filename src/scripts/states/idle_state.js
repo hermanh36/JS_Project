@@ -25,22 +25,22 @@ export class IdleState {
   }
 
   update(input){
-    console.log("idling");
-    if((input.forward || input.backward || input.right || input.left) && input.shift){
+    if(input.forward && input.shift){
       this.parent.setState('run');
-    } else if (input.forward || input.backward || input.right || input.left){
-      console.log("walk");
+    } else if(input.backward){
+      this.parent.setState('back')
+    } else if(input.right || input.left){
+      this.parent.setState('strafe');
+    } else if (input.forward){
       this.parent.setState('walk');
-    } else if (input.hotkey1_out_slash){
-      this.parent.setState('outwardSlash');
-    } else if (input.hotkey2_up_slash){
-      this.parent.setState('upwardSlash');
-    } else if (input.hotkey3_spin_atk){
-      this.parent.setState('spinAttack');
+    } else if (input.hotkey1_slash){
+      this.parent.setState('slash');
+    } else if (input.hotkey2_spin){
+      this.parent.setState('spin');
+    } else if (input.hotkey3_ulti){
+      this.parent.setState('ulti');
     } else if (input.hotkeySpace_dodge){
-      input.parent.forward = true;
-      this.setState('dodge');
-      input.parent.forward = false;
+      this.setState('dance');
     }
     return; 
   }
