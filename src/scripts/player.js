@@ -7,6 +7,7 @@ import {PlayerProxy} from './states/proxy.js'
 // import { OutwardSlashState } from './states/outward_slash_state.js';
 // import { DodgeState } from './states/dodge_state.js';
 // import { SpinAttackState } from './states/spin_attack_state.js';
+import {RunState} from './states/run_state.js'
 
 
 
