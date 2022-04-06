@@ -30,8 +30,10 @@ export class RunState {
   }
 
   update(input, delta){
-    if (!input.shift) {
-      this.parent.setState('walk');
+    if ((input.forward || input.backward || input.right || input.left)){
+      if (!input.shift) {
+        this.parent.setState('walk');
+      }
     } else if (input.hotkey1_out_slash) {
       this.parent.setState('outwardSlash');
     } else if (input.hotkey2_up_slash) {
@@ -42,6 +44,6 @@ export class RunState {
       input.forward = true;
       this.parent.setState('dodge');
       input.forward = false;
-    } 
+    }
   }
 }

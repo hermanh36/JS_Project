@@ -51,7 +51,7 @@ export class PlayerController {
     } else if (event.code === 'KeyD') {
       this.right = false;
     } else if (event.code === 'ShiftLeft') {
-      this.run = false;
+      this.shift = false;
     } else if (event.code === 'Digit1') {
       this.hotkey1_out_slash = false;
     } else if (event.code === 'Digit2') {

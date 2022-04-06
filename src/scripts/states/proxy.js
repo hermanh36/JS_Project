@@ -1,6 +1,6 @@
 import {FiniteStateMachine} from './finite_state_machine'
 import {IdleState} from './idle_state.js'
-// import { RunState } from './states/run_state.js';
+import { RunState } from './run_state.js';
 import { WalkState} from './walk_state.js';
 // import { UpwardSlashState } from './states/upward_slash_state.js';
 // import { OutwardSlashState } from './states/outward_slash_state.js';
@@ -13,7 +13,7 @@ export class PlayerProxy extends FiniteStateMachine{
     // this.animations = animations; //animations from models from player
     this.addState('idle', new IdleState(this.player,this));
     this.addState('walk', new WalkState(this.player, this));
-    // this.addState('run', RunState);
+    this.addState('run', new RunState(this.player,this));
     // this.addState('upwardSlash', UpwardSlashState);
     // this.addState('outwardSlash', OutwardSlashState);
     // this.addState('dodge', DodgeState);
