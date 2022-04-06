@@ -3,14 +3,6 @@ import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import {PlayerController} from './player_controller.js';
 import {PlayerProxy} from './states/proxy.js'
-// import { UpwardSlashState } from './states/upward_slash_state.js';
-// import { OutwardSlashState } from './states/outward_slash_state.js';
-// import { DodgeState } from './states/dodge_state.js';
-// import { SpinAttackState } from './states/spin_attack_state.js';
-import {RunState} from './states/run_state.js'
-
-
-
 
 
 export class Player{
@@ -83,8 +75,11 @@ export class Player{
             innerLoader.load('./src/scripts/model/ulti.fbx', (animModel) => {
                 onLoad('ulti', animModel);
             });
-            innerLoader.load('./src/scripts/model/strafe.fbx', (animModel) => {
-                onLoad('strafe', animModel);
+            innerLoader.load('./src/scripts/model/strafe-left.fbx', (animModel) => {
+                onLoad('strafeLeft', animModel);
+            });
+            innerLoader.load('./src/scripts/model/strafe-right.fbx', (animModel) => {
+                onLoad('strafeRight', animModel);
             });
             innerLoader.load('./src/scripts/model/back.fbx', (animModel) => {
                 onLoad('back', animModel);

@@ -38,8 +38,10 @@ export class RunState {
       this.parent.setState('idle');
     } else if(input.backward){
       this.parent.setState('back')
-    } else if(input.right || input.left){
-      this.parent.setState('strafe');
+    } else if(input.right){
+      this.parent.setState('strafeRight');
+    } else if(input.left){
+      this.parent.setState('strafeLeft');
     } else if (input.hotkey1_out_slash) {
       this.parent.setState('slash');
     } else if (input.hotkey2_up_slash) {

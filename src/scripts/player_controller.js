@@ -6,7 +6,7 @@ export class PlayerController {
     this.left = false;
     this.right = false;
     this.shift = false;
-    this.hotkey3_slash = false;
+    this.hotkey1_slash = false;
     this.hotkey2_spin = false;
     this.hotkey3_ulti = false;
     this.hotkeySpace_dodge = false;
@@ -29,7 +29,7 @@ export class PlayerController {
     } else if (event.code === 'ShiftLeft'){
       this.shift = true;
     } else if (event.code === 'Digit1'){
-      this.hotkey3_slash = true;
+      this.hotkey1_slash = true;
     } else if (event.code === 'Digit2'){
       this.hotkey2_spin = true;
     } else if (event.code === 'Digit3'){
@@ -53,7 +53,7 @@ export class PlayerController {
     } else if (event.code === 'ShiftLeft') {
       this.shift = false;
     } else if (event.code === 'Digit1') {
-      this.hotkey3_slash = false;
+      this.hotkey1_slash = false;
     } else if (event.code === 'Digit2') {
       this.hotkey2_spin = false;
     } else if (event.code === 'Digit3') {

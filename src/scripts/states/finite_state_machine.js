@@ -5,20 +5,8 @@ export class FiniteStateMachine {
   constructor() {
     this.states = {}; //hash of stateName => childState obj
     this.currentState = null;
-    // this.addState('walk', new WalkState());
-    // this.addState('run', new RunState());
-    // this.addState('outwardSlash', new OutwardSlashState());
-    // this.addState('spinAttack', new SpinAttackState());
-    // this.addState('upwardSlash', new UpWardSlashState());
-    // this.addState('dodge', new DodgeState());
   }
 
-
-  //each of these should be in child state classes
-  // initChildStates() {
-
-
-  // }
 
   getState(stateName){
     return this.states[stateName];

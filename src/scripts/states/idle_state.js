@@ -29,8 +29,10 @@ export class IdleState {
       this.parent.setState('run');
     } else if(input.backward){
       this.parent.setState('back')
-    } else if(input.right || input.left){
-      this.parent.setState('strafe');
+    } else if(input.right){
+      this.parent.setState('strafeRight');
+    } else if(input.left){
+      this.parent.setState('strafeLeft');
     } else if (input.forward){
       this.parent.setState('walk');
     } else if (input.hotkey1_slash){
