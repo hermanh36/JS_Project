@@ -65,7 +65,7 @@ export class GameView {
         // const meshMats = new THREE.MeshBasicMaterial({color: 'white', side: THREE.DoubleSide});
         // const stage =  new THREE.Mesh(geometry, meshMats);
         // stage.rotation.x = -Math.PI/2;
-        // this.scene.add(stage);
+        // this.scene.add(stage)a;
     }
     
     //update, render, loop
