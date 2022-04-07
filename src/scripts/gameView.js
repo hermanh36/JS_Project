@@ -39,7 +39,9 @@ export class GameView {
             this.camera.updateProjectionMatrix();
             this.renderer.setSize(width,height);
           },);
-        this.camera.position.set = (-200,50,50);
+        this.camera.position.set(-30,10,-4.5);
+        console.log(this.camera)
+        this.camera.lookAt(new THREE.Vector3(-5,-5,-5));
         const dirLight = new THREE.DirectionalLight(0xFFFFFF, 1);
         dirLight.position.set(50, 50, 50);
         //edit later when target is made

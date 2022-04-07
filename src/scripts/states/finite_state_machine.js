@@ -8,8 +8,8 @@ export class FiniteStateMachine {
   }
 
 
-  getState(stateName){
-    return this.states[stateName];
+  getState(){
+    return this.states.name;
   }
 
   addState(name, state) {

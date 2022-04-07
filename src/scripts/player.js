@@ -16,6 +16,7 @@ export class Player{
         this.input = new PlayerController();
         this.stateMachine = new PlayerProxy(this)
         this.animations = {};
+        this.position = new THREE.Vector3();
     }
 
     is_hit(){
@@ -32,6 +33,8 @@ export class Player{
         loader.load('./src/scripts/model/tpose.fbx', (model) => {  //get the model
             model.scale.multiplyScalar(0.05);
             scene.add(model);
+            model.position.set(-10,-10,-5);
+            console.log(model);
              //onLoad will take in an animation name and call the animModel function to store into dictionary
             this.mixer = new THREE.AnimationMixer(model);
             const onLoad = (animationName, animModel) => {
@@ -91,6 +94,7 @@ export class Player{
     update(delta){
         this.mixer.update(delta);
         this.stateMachine.update(this.input,delta);
+        
     }
 
     
