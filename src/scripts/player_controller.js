@@ -11,9 +11,10 @@ export class PlayerController {
     this.hotkey3_ulti = false;
     this.hotkeySpace_dodge = false;
 
-
-    document.addEventListener('keydown', (e)=>this.keyDown(e));
-    document.addEventListener('keyup', (e)=>this.keyUp(e));
+    this.keyDown = this.keyDown.bind(this);
+    this.keyUp = this.keyUp.bind(this);
+    document.addEventListener('keydown', this.keyDown);
+    document.addEventListener('keyup', this.keyUp);
 
   }
 
