@@ -65,8 +65,11 @@
 
 
 .ending-note {
-    background-color: white;
+    background-color: lightcoral;
     width: 500px;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 5px;
 }
 .ending-note > p{
     color:darkviolet;
