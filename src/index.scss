@@ -1,6 +1,7 @@
 .middle-flex-container {
     display: flex;
-    justify-content: space-evenly;
+    justify-content:center;
+    align-items: center;
 }
 
 .whole-flex-container {
@@ -10,6 +11,84 @@
 }
 
 .main-nav {
-    padding:30px;
-    font-size: 50px;;
+    display:flex;
+    justify-content:space-evenly;
+    padding-top: 20px
+}
+
+.main-nav * {
+    font: 20px;
+}
+
+.left * {
+    padding-left: 50px;
+    padding-right:50px;
+}
+.main-canvas * {
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.right * {
+    width: 200px;
+    padding-left: 20px;
+}
+
+.right p {
+    margin: 0;
+}
+
+.header-container{
+    display:flex;
+    justify-content: space-evenly;
+}
+
+.header-container * {
+    font-size: 24px;
+}
+
+.right {
+    border: 2px solid black;
+    border-radius: 10px;
+    padding-bottom: 20px;
+    margin-left: 0px;
+    background-color: grey;
+}
+
+.left {
+    border: 2px solid black;
+    border-radius: 10px;
+    width: 300px;
+    left: 50px;
+    background-color: gray;
+}
+
+
+.ending-note {
+    background-color: white;
+    width: 500px;
+}
+.ending-note > p{
+    color:darkviolet;
+}
+
+.ending-note > h3 {
+    color: red;
+
+}
+
+body {
+    background-image: url('/background.jpg');
+}
+
+.title {
+    font:bold;
+    font-size: 50px;
+    color:goldenrod;
+    text-shadow: 2px 0 0 #fff, -2px 0 0 #fff, 0 2px 0 #fff, 0 -2px 0 #fff, 1px 1px #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff;
+}
+
+a {
+    color: black;
+    text-shadow: 2px 0 0 #fff, -2px 0 0 #fff, 0 2px 0 #fff, 0 -2px 0 #fff, 1px 1px #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff;
 }
