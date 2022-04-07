@@ -32,12 +32,13 @@ export class GameView {
         document.getElementsByClassName('main-canvas')[0].appendChild(this.renderer.domElement);
         this.camera = new THREE.PerspectiveCamera(75, 1080 / 720, 1, 2000);
         window.addEventListener('resize',() => {
-            let height = window.innerHeight;
-            let width = window.innerWidth;
+            let canvas = this.renderer.domElement
+            let height = canvas.clientHeight;
+            let width = canvas.clientWidth;
             this.camera.aspect = width/height;
             this.camera.updateProjectionMatrix();
             this.renderer.setSize(width,height);
-          });
+          },);
         this.camera.position.set = (-200,50,50);
         const dirLight = new THREE.DirectionalLight(0xFFFFFF, 1);
         dirLight.position.set(50, 50, 50);
