@@ -1,5 +1,3 @@
-import {State} from './state.js'
-
 export class IdleState {
   constructor(player, parent) {
     this.player = player;

@@ -12,13 +12,7 @@ export class RunState {
     if(prevState){
       let prevAnim = this.player.animations[prevState.name].action;
       currentAnim.enabled = true;
-      //maybe check for run
-      //
-      //
-      //
       currentAnim.time = 0.0;
-      // currentAnim.setEffectiveTimeScale(1.0);
-      // currentAnim.setEffectiveWeight(1.0);
       currentAnim.crossFadeFrom(prevAnim, 0.3, true);
       currentAnim.play();
     } else {
@@ -37,7 +31,7 @@ export class RunState {
     } else if (!input.shift){
       this.parent.setState('idle');
     } else if(input.backward){
-      this.parent.setState('back')
+      this.parent.setState('back');
     } else if(input.right){
       this.parent.setState('strafeRight');
     } else if(input.left){

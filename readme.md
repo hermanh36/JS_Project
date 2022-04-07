@@ -1,77 +1,77 @@
-﻿JS Project: Action Combat Boss Simulator
-
-
-Background: This project is meant to simulate what an action-combat video game’s boss fight would feel like. The goal of the game is for the player to avoid attacks of an AI controlled monster while slowly chipping away at it, unlocking faster and more difficult attack patterns as the fight proceeds. Due to the nature of this game, players should expect beating the boss to take more than several attempts and gauge their performance on how much damage they dealt to the boss rather than a strict win/lose scenario. This will be displayed if and when the player loses all lives. The controls will be displayed on the side and skill cooldowns, as well as player and boss’s health, will be displayed on a gui resting on the main scene of the game.
-
-
-Functionality and MVPs
-Players should:
-* Be able to control their character using the mouse for basic movement and the keyboard for dodging and attacking.
-* Dodge clear indicators of large scale attacks from the boss
-* Dodge smaller attacks that do not have indicators but rather windup animations
-* Damage the boss using cooldown based skills
-* Unlock faster and more deadly skills from the AI controlled monster as the fight proceeds.
-This project will also include:
-* An instruction section to briefly explain the controls and what to expect during the fight
-* A production README
+﻿**<div align="center"><font size ="16">Swing and Survive</font></div>**
 
 
 
+</br></br>This is an action combat hack and slash game.</br>
+Play Here: <a href="https://hermanh36.github.io/JS_Project/">Swing and Survive</a></br>
+
+Move, dodge, and position yourself using your mouse and keyboard to avoid the deadly attacks</br>
+of the boss monster in the middle. You can fight back using cooldown based skills assigned <br>
+on keys 1-5 and score points based how long you survive and how much damage you dealt to the boss.
+
+**<font size ="4">Libraries and Technologies Used</font>**
+* Javascript
+* THREE.js
+* HTML 5
+* CSS
+
+**<font size ="4">Functionality and MVPs</font>**
+
+**Completed**
+* Backbone logic of finite state machine
+* Rendering initial canvas
+* Importing character animations and models
+* Character controls and keybinds
+
+**Core Missing Features**
+* Custom camera that binds to character movement
+* Character velocity vectors
+* Boss Models and Actions
+* GUI for character and boss stats
+* Stage and boundaries
+* Model Collisions animation and logic
+* Boss attack logic
+
+**Bonus Features**
+* Background Music and 3D sound effects for skills and collisions
+* Additional skill effects
+* Pause screen
+* Front View Camera When a Button is Held
+
+</br>
+</br>
+</br>
+
+**Character State Example**
+Here's a code snippet of how the various states of the character functions.</br>
+The enter and exit methods are used when another state is entering into the </br>
+current state or the current state is transitioning to another state. The </br>
+update method periodically reads for player input everytime render is called </br>
+and changes state depending on whether a button is pressed or not.</br>
+
+
+![image](idle-state-snippet.png)
+
+</br>
+
+**Character Skill Demo**
+Here's a demo of what the character model can do. More abilities to</br>
+be added!</br>
+
+![](skill-demo.gif)
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Wireframe:
+**<font size ="4">Wireframe</font>**
   
-![image](https://user-images.githubusercontent.com/97995278/161292114-913114f6-d9df-482a-af39-084a49c2365a.png)
+![image](wireframe.png)
+
+
+**Credit and Acknowledgements**
+* <a href="https://www.youtube.com/channel/UCEwhtpXrg5MmwlH04ANpL8A?app=desktop">SimonDev</a> for doing an awesome in depth tutorial of game design in THREE.js.
+* <a href="https://www.mixamo.com/">Mixamo</a> for supplying various models and animations.
+* <a href ="https://www.cgtrader.com/">CGTrader</a> for supplying skybox textures.
+* <a href="https://wallpapercave.com/">WallPaperCave</a> for supplying the background image for my website.
 
 
 
-* Navlink will show my Github and LinkedIn
-* The control and description section will show the player the basics of moving their character and what to expect from the boss fight.
-* The skills, health, and boss health gui will always appear on screen no matter the angle that the player is facing. It will be semi-transparent and appear above the main stage.
-
-
-
-
-Technology, Libraries, and APIs:
-* This project is expected to use the three.js library(may switch to canvas if 3D proves to be too difficult to implement in the allotted time)
-* The native key-press event library will also be used for most, if not all of the play control functionality.
-* Some sort of web server(most likely webpack) to pull files from to be used in three.js
-* Javascript npm to control file dependencies
-
-
-
-
-
-
-
-
-Implementation Timeline:
-* Friday: Familiarize with the three.js library by creating some demo cubes among other objects. If I feel comfortable utilizing the three.js library, the design will follow its initial goal of being a 3D-game. Otherwise, I will refactor the game to work in 2D.
-* Weekends: Mapping out classes and methods. Will create diagrams to help organize logic. After deciding what classes I’m expected to have, I will first work on setting up a proper stage(if using three.js) or start working on the logic of the player and boss class( if using canvas).
-* NOTE: Rest of this is assuming I pursue three.js
-* Monday: Use this day to create the player and boss class logic. Will design movement, skills, health bars, and other common elements found in action combat games. Will also implement event handlers to listen and handle clicks and keyboard presses. If time allows, will create 3D models.
-* Tuesday: Finish polishing up the logics of the player and boss classes if they were not already completed. Will try to dedicate more time to creating boss models after the logic portion is complete.
-* Wednesday: import the boss model onto the three.js stage we created earlier. Will attach the logic of the player and boss onto the models and perform end to end testing. If time allows, will polish up on the 3D aspect of three.js.
-* Thursday: Deploy to github and revise proposal to production.
-
-
-Bonus Features
-* Phase change animations for boss at certain health percentage break points.
-* Introduce a new model with completely new attack patterns for boss
-* Introduce a stage change mechanic to make the game more interactive
-* Add more types of playable character(current design only uses one)
